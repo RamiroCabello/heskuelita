@@ -21,7 +21,7 @@ public class SecurityServiceImpl implements ISecurityService {
     public void login(User user) throws SecurityException {
 
         try{
-            User us= this.userDao.login(user.getUserName(), user.getPassword());
+            User us= this.userDao.login(user.getEmail(), user.getPassword());
         }
         catch (Exception e){
             throw new SecurityException(e);

@@ -26,10 +26,13 @@ public class UserDaoJDBC implements IUserDao {
         try{
 
             Statement stm= this.conn.createStatement();
-            ResultSet resultSet= stm.executeQuery("select * from users where ");
+            ResultSet resultSet= stm.executeQuery("select * from Person where email='" + userName +
+                    "' and password='" + password + "'");
 
             while (resultSet.next()){
                 us= new User();
+                us.setEmail(resultSet.getString("email"));
+                break;
 
             }
 
@@ -39,7 +42,7 @@ public class UserDaoJDBC implements IUserDao {
         }
 
         if(us==null){
-            throw  new DataException("");
+            throw  new DataException("Invalid email/password");
         }
 
         return us;
